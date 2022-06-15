@@ -4,7 +4,7 @@
            # python3 ris_reader.py <source> <path>
            # <source> : Directory with RIS files
            # <path>   : Results Logger with information
-# Example  : python3 news2csv.py RIS_files affiliations
+# Example  : python3 ris_reader.py RIS_files affiliations
 # Author   : Alejandra J. Perea Rojas
 
 import os
