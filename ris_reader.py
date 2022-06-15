@@ -40,17 +40,22 @@ def reader(filepath, counter):
       entries = rispy.load(bibliography_file)
     except UnicodeDecodeError:
       print("UnicodeDecodeError at:", filepath, "Skipped.")
-      print('Might be a DS_store file, <find . -name ".DS_Store" -delete> could help')
+      print('Might be a DS_store file, \
+            <find . -name ".DS_Store" -delete> could help')
       sys.exit()
 
     for entry in entries:
       try:
         f = csv.writer(open(results+'.csv', "a"))
         addr = "https://doi.org/" + entry['doi']
-        f.writerow([addr,entry['title'],entry['year'],entry['authors'],entry['custom3']])
+        f.writerow([addr,entry['title'],\
+                    entry['year'],\
+                    entry['authors'],\
+                    entry['custom3']])
         # f.writerow([entry['title']])# doesn't skip any
       except KeyError:
-        # print(bcolors.FAIL + "\nMissing key, skipped\n" + bcolors.ENDC)
+        # print(bcolors.FAIL + \
+        #       "\nMissing key, skipped\n" + bcolors.ENDC)
         count = count + 1
     
   print("Entries skipped for missing key:", count)
@@ -64,6 +69,7 @@ for filename in os.listdir(folder):
     counter = counter + reader(filepath, counter)
 
 read_file = pd.read_csv(results+'.csv')
-read_file.to_excel(results+'.xlsx', index = None, header=True)
+read_file.to_excel(results+'.xlsx', \
+                   index = None, header=True)
 
 print(counter)
